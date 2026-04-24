@@ -1,9 +1,10 @@
 import "./Body.css";
 
-function Body() {
+function Body({name, location}) {
+    console.log(name, location);
     return (
        <div className="body">
-        <h1>body</h1>
+        {name}은 {location}에 거주합니다.
        </div>
     );
 }
