@@ -1,12 +1,15 @@
+import { useState } from "react";
 import "./Body.css";
 
-function Body({children}) {
-    function handleOnClick() {
-        alert("버튼을 클릭하셨군요!");
+function Body() {
+    const [count, setCount] = useState(0);
+    const onIncrease = () => {
+        setCount(count + 1);
     }
     return (
        <div className="body">
-        <button onClick={handleOnClick}>클릭하세요</button>
+        <h2>{count}</h2>
+        <button onClick={onIncrease}>+</button>
        </div>
     );
 }
