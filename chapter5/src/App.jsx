@@ -3,16 +3,22 @@ import Header from './component/Header'
 import Body from './component/Body'
 import Footer from './component/Footer'
 
+function ChildComp() {
+  return <div>Child component</div>;
+}
+
 function App() {
-  const bodyProps = {
-    name : "이정환",
-    location: "부천시",
-    favorList: ["파스타","빵","떡볶이"],
-  }
+  // const bodyProps = {
+  //   name : "이정환",
+  //   location: "부천시",
+  //   favorList: ["파스타","빵","떡볶이"],
+  // }
   return (
     <div>
       <Header />
-      <Body {...bodyProps}/>
+      <Body>
+        <ChildComp/>
+      </Body>
       <Footer />
     </div>
   )
