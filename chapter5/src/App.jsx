@@ -4,11 +4,15 @@ import Body from './component/Body'
 import Footer from './component/Footer'
 
 function App() {
-  const name = "이정환";
+  const bodyProps = {
+    name : "이정환",
+    location: "부천시",
+    favorList: ["파스타","빵","떡볶이"],
+  }
   return (
     <div>
       <Header />
-      <Body name={name} location={"부천시"}/>
+      <Body {...bodyProps}/>
       <Footer />
     </div>
   )
