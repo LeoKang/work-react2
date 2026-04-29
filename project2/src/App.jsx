@@ -1,9 +1,12 @@
 import "./App.css";
+import Header from "./component/Header";
 
 function App() {
   return (
     <div className="App">
-      <h2>헬로 리액트</h2>
+      <Header />
+      <div>Todo Editor</div>
+      <div>Todo List</div>
     </div>
   );
 }
