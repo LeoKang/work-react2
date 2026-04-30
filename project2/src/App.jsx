@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useReducer, useRef } from "react";
 import "./App.css";
 import Header from "./component/Header";
 import TodoEditor from "./component/TodoEditor";
@@ -26,37 +26,59 @@ const mockTodo = [
   },
 ];
 
+function reducer(state, action) {
+  switch (action.type) {
+    case "CREATE":
+      return [action.newItem, ...state];
+    default:
+      return state;
+  }
+
+  return state;
+}
+
 function App() {
-  const [todo, setTodo] = useState(mockTodo);
+  // const [todo, setTodo] = useState(mockTodo);
+  const [todo, dispatch] = useReducer(reducer, mockTodo);
   const idRef = useRef(3);
   const onCreate = (content) => {
-    const newItem = {
-      id: idRef.current,
-      content,
-      isDone: false,
-      createdDate: new Date().getTime(),
-    };
-    setTodo([newItem, ...todo]);
+    dispatch({
+      type: "CREATE",
+      newItem: {
+        id: idRef.current,
+        content,
+        isDone: false,
+        createdDate: new Date().getTime(),
+      },
+    });
+
+    // const newItem = {
+    //   id: idRef.current,
+    //   content,
+    //   isDone: false,
+    //   createdDate: new Date().getTime(),
+    // };
+    // setTodo([newItem, ...todo]);
     idRef.current += 1;
   };
 
   const onUpdate = (targetId) => {
-    setTodo(
-      todo.map((it) => {
-        if (it.id === targetId) {
-          return {
-            ...it,
-            isDone: !it.isDone,
-          };
-        } else {
-          return it;
-        }
-      }),
-    );
+    // setTodo(
+    //   todo.map((it) => {
+    //     if (it.id === targetId) {
+    //       return {
+    //         ...it,
+    //         isDone: !it.isDone,
+    //       };
+    //     } else {
+    //       return it;
+    //     }
+    //   }),
+    // );
   };
 
   const onDelete = (targetId) => {
-    setTodo(todo.filter((it) => it.id !== targetId));
+    // setTodo(todo.filter((it) => it.id !== targetId));
   };
 
   return (
