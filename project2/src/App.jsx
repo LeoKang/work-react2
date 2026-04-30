@@ -30,11 +30,15 @@ function reducer(state, action) {
   switch (action.type) {
     case "CREATE":
       return [action.newItem, ...state];
+    case "UPDATE":
+      return state.map((it) =>
+        it.id === action.targetId ? { ...it, isDone: !it.isDone } : it,
+      );
+    case "DELETE":
+      return state.filter((it) => it.id !== action.targetId);
     default:
       return state;
   }
-
-  return state;
 }
 
 function App() {
@@ -63,22 +67,18 @@ function App() {
   };
 
   const onUpdate = (targetId) => {
-    // setTodo(
-    //   todo.map((it) => {
-    //     if (it.id === targetId) {
-    //       return {
-    //         ...it,
-    //         isDone: !it.isDone,
-    //       };
-    //     } else {
-    //       return it;
-    //     }
-    //   }),
-    // );
+    dispatch({
+      type: "UPDATE",
+      targetId,
+    });
   };
 
   const onDelete = (targetId) => {
     // setTodo(todo.filter((it) => it.id !== targetId));
+    dispatch({
+      type: "DELETE",
+      targetId,
+    });
   };
 
   return (
