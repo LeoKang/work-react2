@@ -24,6 +24,10 @@ const Editor = ({ initData, onSubmit }) => {
     });
   };
 
+  const handleSubmit = () => {
+    onSubmit(state);
+  };
+
   return (
     <div className="Editor">
       <div className="editor_section">
@@ -50,7 +54,7 @@ const Editor = ({ initData, onSubmit }) => {
       </div>
       <div className="editor_section bottom_section">
         <Button text={"취소하기"} />
-        <Button text={"작성완료"} type={"positive"} />
+        <Button text={"작성완료"} type={"positive"} onClick={handleSubmit} />
       </div>
     </div>
   );
