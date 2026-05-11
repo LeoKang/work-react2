@@ -14,13 +14,19 @@ function reducer(state, action) {
     case "INIT":
       return action.data;
     case "CREATE":
-      return [action.data, ...state];
+      const newState = [action.data, ...state];
+      localStorage.setItem("diary", JSON.stringify(newState));
+      return newState;
     case "UPDATE":
       return state.map((it) =>
         String(it.id) === String(action.data.id) ? { ...action.data } : it,
       );
-    case "DELETE":
-      return state.filter((it) => String(it.id) !== String(action.targetId));
+    case "DELETE": {
+      const newState = state.filter(
+        (it) => String(it.id) !== String(action.targetId),
+      );
+      localStorage.setItem("diary", JSON.stringify(newState));
+    }
     default: {
       return state;
     }
