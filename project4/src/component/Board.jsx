@@ -7,7 +7,7 @@ function Square({ value }) {
 export default function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null));
   return (
-    <>
+    <div className="board">
       <div className="board-row">
         <Square value={squares[0]} />
         <Square value={squares[1]} />
@@ -23,6 +23,6 @@ export default function Board() {
         <Square value={squares[7]} />
         <Square value={squares[8]} />
       </div>
-    </>
+    </div>
   );
 }
